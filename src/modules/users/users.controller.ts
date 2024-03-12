@@ -2,14 +2,23 @@ import { Controller, Get } from '@nestjs/common';
 // import { UsersService } from './users.service';
 import { UserRequest } from 'src/decorators/user.decorator';
 import { UserDocument } from './model/users.schema';
-import { UserEntity } from './model/user.entify';
+import { UserEntity } from './model/user.entity';
+import { UsersService } from './users.service';
+import { Public } from 'src/decorators/public.decorator';
 
 @Controller('users')
 export class UserController {
-  // constructor(private userService: UsersService) {}
+  constructor(private userService: UsersService) {}
 
   @Get('profile')
   async getProfile(@UserRequest() user: UserDocument) {
     return new UserEntity(user);
+  }
+
+  // TODO: authorization - only admin
+  @Get('')
+  @Public()
+  async get() {
+    return this.userService.get();
   }
 }
