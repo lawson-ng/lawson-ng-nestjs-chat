@@ -7,8 +7,14 @@ import { UsersService } from './users.service';
 import { Public } from 'src/decorators/public.decorator';
 
 @Controller('users')
+@Public()
 export class UserController {
   constructor(private userService: UsersService) {}
+
+  @Get('hello')
+  async hello() {
+    return 'hello';
+  }
 
   @Get('profile')
   async getProfile(@UserRequest() user: UserDocument) {
