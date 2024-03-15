@@ -12,7 +12,6 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() signInDto: Record<string, any>) {
-    return 200;
     return await this.authService.signIn(
       signInDto?.userName,
       signInDto?.password,

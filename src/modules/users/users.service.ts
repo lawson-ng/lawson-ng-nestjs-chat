@@ -24,6 +24,6 @@ export class UsersService {
   }
 
   async get() {
-    return this.userModel.find();
+    return this.userModel.find().lean();
   }
 }

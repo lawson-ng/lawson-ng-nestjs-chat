@@ -6,12 +6,6 @@ export type UserDocument = HydratedDocument<User>;
 @Schema({
   _id: true,
   timestamps: true,
-  toObject: {
-    getters: true,
-  },
-  toJSON: {
-    getters: true,
-  },
 })
 export class User {
   @Prop({
