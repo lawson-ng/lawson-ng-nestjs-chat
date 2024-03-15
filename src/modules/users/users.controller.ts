@@ -5,8 +5,10 @@ import { UserDocument } from './model/users.schema';
 import { UserEntity } from './model/user.entity';
 import { UsersService } from './users.service';
 import { Public } from 'src/decorators/public.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
+@ApiTags('Users')
 @Public()
 export class UserController {
   constructor(private userService: UsersService) {}
