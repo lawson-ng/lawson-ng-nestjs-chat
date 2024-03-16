@@ -11,11 +11,11 @@ export class UsersService {
 
   async create(createUserDto: SignUpDto) {
     const password = bcrypt.hashSync(createUserDto.password, 12);
-    return this.userModel.create({ ...createUserDto, password });
+    return this.userModel.create({ ...createUserDto, password, active: true });
   }
 
   async findOne(userName: string): Promise<UserDocument | undefined> {
-    const data = await this.userModel.findOne({ userName });
+    const data = await this.userModel.findOne({ userName, active: true });
     return data;
   }
 
@@ -24,6 +24,6 @@ export class UsersService {
   }
 
   async get() {
-    return this.userModel.find().lean();
+    return this.userModel.find({ active: true }).lean();
   }
 }

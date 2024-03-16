@@ -24,6 +24,7 @@ export class UserController {
   @Get('')
   @Public()
   async get() {
-    return this.userService.get();
+    const docs = await this.userService.get();
+    return docs.map((doc) => new UserEntity(doc));
   }
 }
