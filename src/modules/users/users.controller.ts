@@ -1,5 +1,4 @@
 import { Controller, Get } from '@nestjs/common';
-// import { UsersService } from './users.service';
 import { UserRequest } from 'src/decorators/user.decorator';
 import { UserDocument } from './model/users.schema';
 import { UserEntity } from './model/user.entity';
@@ -22,7 +21,6 @@ export class UserController {
     return new UserEntity(user);
   }
 
-  // TODO: authorization - only admin
   @Get('')
   @Public()
   async get() {
