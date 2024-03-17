@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Ip, Request } from '@nestjs/common';
 import { UserRequest } from 'src/decorators/user.decorator';
 import { UserDocument } from './model/users.schema';
 import { UserEntity } from './model/user.entity';
@@ -12,7 +12,9 @@ export class UserController {
   constructor(private userService: UsersService) {}
 
   @Get('hello')
-  async hello() {
+  @Public()
+  async hello(@Ip() ip) {
+    console.log('🚀 ~ UserController ~ hello ~ ip:', ip);
     return 'hello';
   }
 
