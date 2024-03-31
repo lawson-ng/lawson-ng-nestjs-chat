@@ -34,12 +34,15 @@ export class AuthService {
   }
 
   async signUp(signupData: SignUpDto) {
-    const { userName, password } = signupData;
+    const { userName, password, confirmPassword } = signupData;
+    if (password !== confirmPassword) {
+      throw new BadRequestException('The confirm password is invalid.');
+    }
     const isExistUserName = await this.isExistUserName(userName);
     if (isExistUserName) {
       throw new BadRequestException('The user has been registered.');
     }
-    await this.userService.create({ userName, password });
+    await this.userService.create(signupData);
     return { userName };
   }
 

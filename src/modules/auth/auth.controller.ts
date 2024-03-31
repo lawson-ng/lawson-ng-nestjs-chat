@@ -20,7 +20,6 @@ export class AuthController {
 
   @Post('signup')
   signUp(@Body() signupDto: SignUpDto) {
-    console.log('signup', signupDto);
     return this.authService.signUp(signupDto);
   }
 }
