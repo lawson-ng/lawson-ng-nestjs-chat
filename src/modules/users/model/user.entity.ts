@@ -7,6 +7,9 @@ export class UserEntity {
   @Expose()
   userName: string;
 
+  @Expose()
+  createdAt: string;
+
   @Exclude()
   password: string;
 
