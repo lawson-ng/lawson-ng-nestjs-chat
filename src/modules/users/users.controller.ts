@@ -9,15 +9,14 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('users')
 @ApiTags('Users')
 export class UserController {
-  constructor(private userService: UsersService) {}
-
-  @Get('hello')
-  @Public()
-  async hello(@Ip() ip) {
-    console.log('🚀 ~ UserController ~ hello ~ ip:', ip);
-    return 'hello';
-  }
-
+  constructor(private userService: UsersService) { }
+  //
+  // @Get('hello')
+  // @Public()
+  // async hello(@Ip() ip) {
+  //   return 'hello';
+  // }
+  //
   @Get('profile')
   async getProfile(@UserRequest() user: UserDocument) {
     return new UserEntity(user);

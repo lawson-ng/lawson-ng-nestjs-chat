@@ -36,11 +36,11 @@ export class AuthService {
   async signUp(signupData: SignUpDto) {
     const { userName, password, confirmPassword } = signupData;
     if (password !== confirmPassword) {
-      throw new BadRequestException('The confirm password is invalid.');
+      throw new BadRequestException('Mật khẩu xác nhận không khớp.');
     }
     const isExistUserName = await this.isExistUserName(userName);
     if (isExistUserName) {
-      throw new BadRequestException('The user has been registered.');
+      throw new BadRequestException('Tài khoản đã tồn tại.');
     }
     await this.userService.create(signupData);
     return { userName };
