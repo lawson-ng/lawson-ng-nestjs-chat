@@ -21,6 +21,7 @@ export class UserController {
   @Get('')
   @Public()
   async get() {
+    console.log('get list users');
     const data = this.userServiceClient.send({ cmd: 'get_users' }, {});
     return data;
   }
