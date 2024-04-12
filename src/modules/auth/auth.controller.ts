@@ -12,6 +12,7 @@ import { SignUpDto } from './model/dto/signup.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
 import { AuthGuard } from '@nestjs/passport';
+import { Public } from 'src/decorators/public.decorator';
 
 @Controller('auth')
 @ApiTags('Auth')
@@ -22,6 +23,7 @@ export class AuthController {
   @Post('login')
   @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard('local'))
+  @Public()
   async login(@Request() req) {
     return req.user;
   }
