@@ -4,8 +4,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
-import { AuthGuard } from './guards/auth.guard';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { JwtGuard } from './guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -19,12 +19,11 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
         limit: 10,
       },
     ]),
-    // ChatModule,
     AuthModule,
     UsersModule,
   ],
   providers: [
-    { provide: APP_GUARD, useClass: AuthGuard },
+    { provide: APP_GUARD, useClass: JwtGuard },
     { provide: APP_INTERCEPTOR, useClass: ClassSerializerInterceptor },
     {
       provide: APP_GUARD,
