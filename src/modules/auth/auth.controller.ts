@@ -29,6 +29,7 @@ export class AuthController {
   }
 
   @Post('signup')
+  @Public()
   signUp(@Body() signupDto: SignUpDto) {
     return this.authService.signUp(signupDto);
   }
